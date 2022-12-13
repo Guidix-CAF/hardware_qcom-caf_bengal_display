@@ -4,9 +4,9 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
     vendor.qti.hardware.display.allocator-service \
     vendor.qti.hardware.display.composer-service \
-    gralloc.$(TARGET_BOARD_PLATFORM) \
-    lights.$(TARGET_BOARD_PLATFORM) \
-    hwcomposer.$(TARGET_BOARD_PLATFORM) \
+    gralloc.$(PRODUCT_BOARD_PLATFORM) \
+    lights.$(PRODUCT_BOARD_PLATFORM) \
+    hwcomposer.$(PRODUCT_BOARD_PLATFORM) \
     libsdmcore \
     libsdmutils \
     libqdMetaData \
@@ -23,7 +23,7 @@ ifneq ($(TARGET_DISABLE_MEMTRACK), true)
 PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service \
-    memtrack.$(TARGET_BOARD_PLATFORM)
+    memtrack.$(PRODUCT_BOARD_PLATFORM)
 endif
 
 PRODUCT_VENDOR_PROPERTIES += \
@@ -50,7 +50,7 @@ PRODUCT_VENDOR_PROPERTIES += \
     debug.sf.predict_hwc_composition_strategy=0
 
 # Enable offline rotator for Bengal, Monaco, Khaje.
-ifneq ($(filter bengal monaco khaje, $(TARGET_BOARD_PLATFORM)),$(TARGET_BOARD_PLATFORM))
+ifneq ($(filter bengal monaco khaje, $(PRODUCT_BOARD_PLATFORM)),$(PRODUCT_BOARD_PLATFORM))
 PRODUCT_VENDOR_PROPERTIES += \
     vendor.display.disable_offline_rotator=1
 else
@@ -85,13 +85,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.display.disable_cache_manager=1
 endif
 
-ifeq ($(TARGET_BOARD_PLATFORM),monaco)
+ifeq ($(PRODUCT_BOARD_PLATFORM),monaco)
 PRODUCT_VENDOR_PROPERTIES += \
     vendor.display.disable_layer_stitch=1
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 endif
 
-ifeq ($(TARGET_BOARD_PLATFORM),kona)
+ifeq ($(PRODUCT_BOARD_PLATFORM),kona)
 PRODUCT_VENDOR_PROPERTIES += \
     debug.sf.enable_gl_backpressure=1 \
     debug.sf.enable_advanced_sf_phase_offset=1 \
@@ -100,7 +100,7 @@ PRODUCT_VENDOR_PROPERTIES += \
     debug.sf.high_fps_early_gl_phase_offset_ns=-2000000
 endif
 
-ifeq ($(TARGET_BOARD_PLATFORM),lito)
+ifeq ($(PRODUCT_BOARD_PLATFORM),lito)
 PRODUCT_VENDOR_PROPERTIES += \
     debug.sf.high_fps_late_sf_phase_offset_ns=-2000000 \
     debug.sf.high_fps_early_phase_offset_ns=-4000000 \
@@ -112,7 +112,7 @@ PRODUCT_VENDOR_PROPERTIES += \
 endif
 
 ifeq ($(TARGET_FWK_SUPPORTS_FULL_VALUEADDS), true)
-  ifeq ($(TARGET_BOARD_PLATFORM),lito)
+  ifeq ($(PRODUCT_BOARD_PLATFORM),lito)
   PRODUCT_VENDOR_PROPERTIES += \
       vendor.display.enable_perf_hint_large_comp_cycle=1
   endif
